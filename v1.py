@@ -15,17 +15,17 @@ output=''
 
 # Preprocessing
 words_for_relations.append([unichr(i) for i in [2344,2366,2350,2325]]) #naamak
-words_for_relations.append([unichr(i) for i in [2332, 2376, 2360, 2375]]) #jaise
+words_for_relations.append([unichr(i) for i in [2332,2376,2360,2375]]) #jaise
 #.........................
 
 # Read the file containing Hindi text
-file = open('sample.txt', 'r')
+file = open('temp.txt', 'r')
 data = file.read().decode('utf-8')
 words = data.split()
 #.................................
 
 for word in words:
-    #print word, len(word),
+    #print word, ord(word[-1])
     #print [ord(t) for t in word]
     curr_word=[]
     for ch in word:
@@ -34,8 +34,10 @@ for word in words:
         related_words.append([words[index-1], words[index+1]])
         print words[index-1], words[index+1]
     
-    # 2404 is the code for '|'. Used for calculating number of sentences in the file
-    if ord(word[-1]) == 2404:
+    #Used for calculating number of sentences in the file
+    # 2404 is the code for '|'.
+    # 63 is the code for '?'.
+    if ord(word[-1])==2404 or ord(word[-1])==63:
         count+=1
         temp_ending_list = [ord(i) for i in word[:-1]]
         if temp_ending_list not in ending_words:
