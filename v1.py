@@ -19,7 +19,7 @@ words_for_relations.append([unichr(i) for i in [2332,2376,2360,2375]]) #jaise
 #.........................
 
 # Read the file containing Hindi text
-file = open('sample.txt', 'r')
+file = open('sample-files/sample.txt', 'r')
 data = file.read().decode('utf-8')
 words = data.split()
 #.................................
