@@ -33,6 +33,9 @@ for word in words:
     if curr_word in words_for_relations:
         related_words.append([words[index-1], words[index+1]])
         print words[index-1], words[index+1]
+        print chr(2404)
+        with open('results/hyponyms.txt', 'a') as file:
+            file.write(str(words[index-1])+' '+str(words[index+1]))
     
     #Used for calculating number of sentences in the file
     # 2404 is the code for '|'.
