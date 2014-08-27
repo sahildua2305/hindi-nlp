@@ -1,5 +1,14 @@
 import re
 
+def unichrWord(word):
+    return [unichr(ord(i)) for i in word]
+
+def ordWord(word):
+    return [str(ord(i)) for i in word]
+
+def unichrOrd(ord_list):
+    return [unichr(i) for i in ord_list]
+
 #Initialization of variables
 separators = [u"|"]
 ending_words = []
@@ -25,18 +34,18 @@ words = data.split()
 #.................................
 
 for word in words:
-    #print word, ord(word[-1])
-    #print [ord(t) for t in word]
-    curr_word=[]
-    for ch in word:
-        curr_word = [unichr(ord(i)) for i in word]
+    curr_word = unichrWord(word)
     if curr_word in words_for_relations:
         related_words.append([words[index-1], words[index+1]])
+        print (ordWord(words[index-1]))
         print words[index-1], words[index+1]
-        print chr(2404)
-        with open('results/hyponyms.txt', 'a') as file:
-            file.write(str(words[index-1])+' '+str(words[index+1]))
-    
+        if curr_word == words_for_relations[0]:
+            with open('results/hyponyms.txt', 'a') as file:
+                file.write('[('+",".join(ordWord(words[index+1]))+'),('+",".join(ordWord(words[index-1]))+")]")
+        elif curr_word == words_for_relations[1]:
+            with open('results/hyponyms.txt', 'a') as file:
+                file.write('[('+",".join(ordWord(words[index-1]))+'),('+",".join(ordWord(words[index+1]))+")]")
+
     #Used for calculating number of sentences in the file
     # 2404 is the code for '|'.
     # 63 is the code for '?'.
